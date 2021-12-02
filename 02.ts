@@ -46,6 +46,7 @@ const task = new Solution(
     transform,
   }
 );
+task.expect(150, 900);
 
 if (import.meta.main) await task.execute();
 

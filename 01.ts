@@ -11,6 +11,7 @@ const task = new Solution(
   },
   { transform: (a) => Number(a) }
 );
+task.expect(7, 5);
 
 if (import.meta.main) await task.execute();
 
