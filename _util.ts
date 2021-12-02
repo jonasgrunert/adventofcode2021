@@ -1,15 +1,15 @@
+import { toFileUrl } from "https://deno.land/std@0.116.0/path/mod.ts";
+
 function readFileToArray<O>(
   transform: (value: string, index: number, array: string[]) => O = (data) =>
     <O>(<unknown>data),
-  sep: string | RegExp = "\n"
+  sep: string | RegExp = "\n",
+  filename: string | false = false
 ): Promise<O[]> {
-  const url = Deno.mainModule.replace(
-    /(\d{2}(?:_test)?).ts/,
-    (_, d) => `data/${d}.txt`
-  );
-  return Deno.readTextFile(new URL(url)).then((s) =>
-    s.split(sep).map(transform)
-  );
+  const url = filename
+    ? toFileUrl(`${Deno.cwd()}/data/${filename}.txt`)
+    : new URL(Deno.mainModule.replace(/(\d{2}).ts/, (_, d) => `data/${d}.txt`));
+  return Deno.readTextFile(url).then((s) => s.split(sep).map(transform));
 }
 
 let i = 1;
@@ -49,6 +49,10 @@ class Solution<T, O1, O2 = O1> {
   readonly #t1: TaskFunction<T, O1>;
   readonly #t2: TaskFunction<T, O2>;
   readonly #opts: ReadOpts<T>;
+  #test: string | false = false;
+  r1?: O1;
+  r2?: O2;
+
   constructor(
     task1: TaskFunction<T, O1>,
     task2: TaskFunction<T, O2> | ReadOpts<T>,
@@ -68,26 +72,39 @@ class Solution<T, O1, O2 = O1> {
   }
 
   get result1() {
-    return readFileToArray(this.#opts.transform, this.#opts.sep).then((d) =>
-      this.#t1(d)
-    );
+    return readFileToArray(
+      this.#opts.transform,
+      this.#opts.sep,
+      this.#test
+    ).then((d) => this.#t1(d));
   }
 
   get result2() {
-    return readFileToArray(this.#opts.transform, this.#opts.sep).then((d) =>
-      this.#t2(d)
-    );
+    return readFileToArray(
+      this.#opts.transform,
+      this.#opts.sep,
+      this.#test
+    ).then((d) => this.#t2(d));
   }
 
   async execute() {
     solution(await this.result1);
     solution(await this.result2);
   }
+
+  expect(r1?: O1, r2?: O2) {
+    this.r1 = r1;
+    this.r2 = r2;
+  }
+
+  set test(val: string) {
+    this.#test = val;
+  }
 }
 
 export default Solution;
-export function getNumber(): number {
-  return Number(
-    Deno.mainModule.match(/(?<num>\d{2})_test.ts/)?.groups?.num ?? 0
-  );
+
+export function getNumber(name?: string): string {
+  const n = name ?? Deno.mainModule;
+  return n.match(/(?<num>\d{2}).ts/)?.groups?.num ?? "Unknown";
 }
