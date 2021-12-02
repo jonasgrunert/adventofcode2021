@@ -7,7 +7,6 @@ export function readFileToArray<O>(
     /(\d{2}(?:_test)?).ts/,
     (_, d) => `data/${d}.txt`
   );
-  console.log(url);
   return Deno.readTextFile(new URL(url)).then((s) =>
     s.split(sep).map(transform)
   );
