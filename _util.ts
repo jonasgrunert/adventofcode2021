@@ -15,13 +15,8 @@ function readFileToArray<O>(
 let i = 1;
 
 function solution(sol: unknown) {
-  const parts = Deno.mainModule.match(/\/(?<num>\d{2})\.ts/);
-  if (parts) {
-    console.log(
-      `${parts.groups?.num ?? "Unkown"} - ${i}: ${Deno.inspect(sol)}`
-    );
-    i++;
-  }
+  console.log(`${getNumber()} - Task ${i}: ${Deno.inspect(sol)}`);
+  i++;
 }
 
 if (import.meta.main) {
