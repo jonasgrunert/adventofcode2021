@@ -34,11 +34,6 @@ const DefaultImplementation = () => {
   throw new Error("Not implemented");
 };
 
-const defaultOpts: ReadOpts<string> = {
-  transform: (data) => data,
-  sep: "\n",
-};
-
 type TaskFunction<T, O> = (data: T[]) => O;
 type ReadOpts<T> = {
   transform?: (value: string, index: number, array: string[]) => T;
@@ -55,8 +50,14 @@ class Solution<T, O1, O2 = O1> {
 
   constructor(
     task1: TaskFunction<T, O1>,
-    task2: TaskFunction<T, O2> | ReadOpts<T> = defaultOpts,
-    opts: ReadOpts<T> = defaultOpts
+    task2: TaskFunction<T, O2> | ReadOpts<T> = {
+      transform: (data) => <T>(<unknown>data),
+      sep: "\n",
+    },
+    opts: ReadOpts<T> = {
+      transform: (data) => <T>(<unknown>data),
+      sep: "\n",
+    }
   ) {
     this.#t1 = task1;
     if (typeof task2 === "function") {
