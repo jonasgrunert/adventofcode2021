@@ -5,12 +5,12 @@ for await (const file of Deno.readDir(".")) {
   if (file.isFile && file.name.match(/\d{2}\.ts/)) {
     const { default: sol } = await import(`./${file.name}`);
     sol.test = file.name.replace(/(\d{2}).ts/, (_, g) => `${g}_test`);
-    if (sol.r1) {
+    if (sol.r1 !== undefined) {
       Deno.test(`${getNumber(file.name)} - Task 1`, async () => {
         assertEquals(await sol.result1, sol.r1);
       });
     }
-    if (sol.r2) {
+    if (sol.r2 !== undefined) {
       Deno.test(`${getNumber(file.name)} - Task 2`, async () => {
         assertEquals(await sol.result2, sol.r2);
       });
