@@ -17,49 +17,38 @@ function pos(min: number, max: number) {
   return poss;
 }
 
+const range = (start: number, end: number): number[] =>
+  Array.from({ length: end - start + 1 }).map((_, i) => i + start);
+
 const task = new Solution(
   (arr: Area[]) => {
     const v = Math.abs(arr[0].y[0]);
     return (v * (v - 1)) / 2;
   },
   (arr: Area[]) => {
-    const maxY = Math.abs(arr[0].y[1]);
-    const minY = Math.abs(arr[0].y[0]);
-    const yDis = [minY - maxY + 1];
-    for (let y = 1 - minY; y < maxY; y++) {
-      let pos = y;
-      let count = 0;
-      while (pos <= minY) {
-        if (pos >= maxY) {
-          yDis[count] = (yDis[count] ?? 0) + 1;
-        }
-        count++;
-        pos += y + count;
-      }
-    }
-    let x0 = 0;
-    let from = 0;
-    const xDis = [arr[0].x[1] - arr[0].x[0] + 1];
-    for (let x = 0; x < arr[0].x[0]; x++) {
-      let pos = x;
-      let count = 0;
-      while (pos <= arr[0].x[1] && x - count > 0) {
-        if (pos >= arr[0].x[0]) {
-          if (x - count === 0) {
-            x0++;
-            from = from === 0 ? x : from;
+    let count =
+      Math.abs(arr[0].y[1] + 1 - arr[0].y[0]) * (arr[0].x[1] + 1 - arr[0].x[0]);
+    const int = count;
+    for (let y = arr[0].y[1]; y < -arr[0].y[0]; y++) {
+      for (let x = 0; x < arr[0].x[0]; x++) {
+        let steps = 0,
+          xpos = x,
+          ypos = y;
+        while (xpos <= arr[0].x[1] && ypos >= arr[0].y[0]) {
+          if (xpos >= arr[0].x[0] && ypos <= arr[0].y[1]) {
+            count++;
+            break;
           }
-          xDis[count] = (xDis[count] ?? 0) + 1 + (count >= from ? x0 : 0);
-          console.log("x", x, count);
+          steps++;
+          xpos += Math.max(0, x - steps);
+          ypos += y - steps;
+          if (x - steps <= 0 && xpos < arr[0].x[0]) {
+            break;
+          }
         }
-        count++;
-        pos += x - count;
       }
     }
-    console.log(xDis, yDis, x0);
-    return yDis.reduce((p, c, i) => {
-      return p + c * (xDis[i] ?? x0);
-    }, 0);
+    return count;
   },
   {
     transform: (a) => {
@@ -79,7 +68,7 @@ const task = new Solution(
     },
   }
 );
-task.expect(45, 122);
+task.expect(45, 112);
 
 if (import.meta.main) await task.execute();
 
