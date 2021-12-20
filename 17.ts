@@ -2,24 +2,6 @@ import Solution from "./_util.ts";
 
 type Area = { x: [number, number]; y: [number, number] };
 
-function pos(min: number, max: number) {
-  let poss = 0;
-  for (let i = 0; i < min - 1; i++) {
-    let pos = 0;
-    while (pos <= max) {
-      if (pos >= min) {
-        poss++;
-        break;
-      }
-      pos += pos + 1;
-    }
-  }
-  return poss;
-}
-
-const range = (start: number, end: number): number[] =>
-  Array.from({ length: end - start + 1 }).map((_, i) => i + start);
-
 const task = new Solution(
   (arr: Area[]) => {
     const v = Math.abs(arr[0].y[0]);
@@ -28,7 +10,6 @@ const task = new Solution(
   (arr: Area[]) => {
     let count =
       Math.abs(arr[0].y[1] + 1 - arr[0].y[0]) * (arr[0].x[1] + 1 - arr[0].x[0]);
-    const int = count;
     for (let y = arr[0].y[1]; y < -arr[0].y[0]; y++) {
       for (let x = 0; x < arr[0].x[0]; x++) {
         let steps = 0,
