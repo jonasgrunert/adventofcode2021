@@ -17,7 +17,7 @@ let i = 1;
 function solution(sol: unknown) {
   console.log(
     `${getNumber()} - Task ${i}: ${
-      typeof sol === "string" ? "\n" + sol : Deno.inspect(sol)
+      typeof sol === "string" ? sol : Deno.inspect(sol)
     }`
   );
   i++;

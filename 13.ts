@@ -51,13 +51,16 @@ class Paper {
     );
     const maxX = p.reduce((p, c) => Math.max(p, c[0]), 0);
     const maxY = p.reduce((p, c) => Math.max(p, c[0]), 0);
-    return Array.from({ length: maxX + 1 })
-      .map((_, x) =>
-        Array.from({ length: maxY + 1 })
-          .map((_, y) => (this.#points.has(`${x},${y}`) ? "X" : " "))
-          .join("")
-      )
-      .join("\n");
+    return (
+      "\n" +
+      Array.from({ length: maxX + 1 })
+        .map((_, x) =>
+          Array.from({ length: maxY + 1 })
+            .map((_, y) => (this.#points.has(`${x},${y}`) ? "X" : " "))
+            .join("")
+        )
+        .join("\n")
+    );
   }
 }
 
@@ -78,7 +81,8 @@ const task = new Solution(
 );
 task.expect(
   17,
-  `XXXXX
+  `
+XXXXX
 X   X
 X   X
 X   X
