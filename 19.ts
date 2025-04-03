@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function rot(d0: number, d1: number) {
   const div = d0 / d1;
@@ -170,7 +170,5 @@ const task = new Solution(
   { sep: "\n\n", transform: (a) => new Scanner(a) }
 );
 task.expect(79, 3621);
-
-if (import.meta.main) await task.execute();
 
 export default task;

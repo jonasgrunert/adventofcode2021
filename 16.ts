@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 type Packet = {
   version: number;
@@ -153,7 +153,5 @@ const task = new Solution(
   }
 );
 task.expect(31, 54);
-
-if (import.meta.main) await task.execute();
 
 export default task;

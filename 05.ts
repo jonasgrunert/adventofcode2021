@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 type line = [[number, number], [number, number]];
 
@@ -81,7 +81,5 @@ const task = new Solution(solution(true), solution(false), {
   transform: (a) => new Line(a),
 });
 task.expect(5, 12);
-
-if (import.meta.main) await task.execute();
 
 export default task;

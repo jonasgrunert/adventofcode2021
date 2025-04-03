@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 type Image = {
   points: Set<string>;
@@ -92,7 +92,5 @@ const task = new Solution(solve(2), solve(50), {
   transform: (a, i) => (i == 0 ? a : imageFromString(a)),
 });
 task.expect(35, 3351);
-
-if (import.meta.main) await task.execute();
 
 export default task;

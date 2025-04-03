@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 /** All the cool shit never got used :( */
 interface Instruction<s extends string> {
@@ -120,7 +120,5 @@ const task = new Solution(solve(), solve(false), {
   },
   sep: "\n",
 });
-
-if (import.meta.main) await task.execute();
 
 export default task;

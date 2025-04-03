@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 type Area = { x: [number, number]; y: [number, number] };
 
@@ -50,7 +50,5 @@ const task = new Solution(
   }
 );
 task.expect(45, 112);
-
-if (import.meta.main) await task.execute();
 
 export default task;

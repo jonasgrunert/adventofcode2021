@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function lowestPositions(arr: number[][]) {
   const low = [] as [number, number][];
@@ -77,7 +77,5 @@ const task = new Solution(
   }
 );
 task.expect(15, 1134);
-
-if (import.meta.main) await task.execute();
 
 export default task;

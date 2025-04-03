@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 class System {
   static #caves = new Map<string, Cave>();
@@ -87,7 +87,5 @@ const task = new Solution(
   }
 );
 task.expect(226, 3509);
-
-if (import.meta.main) await task.execute();
 
 export default task;

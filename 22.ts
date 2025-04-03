@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 type T = [number, number];
 
 type Instruction = {
@@ -68,7 +68,5 @@ const task = new Solution(
   }
 );
 task.expect(474140, 2758514936282235);
-
-if (import.meta.main) await task.execute();
 
 export default task;

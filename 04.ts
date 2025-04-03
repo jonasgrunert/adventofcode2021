@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 class Board {
   _type = "board";
@@ -82,7 +82,5 @@ const task = new Solution(
   }
 );
 task.expect(4512, 1924);
-
-if (import.meta.main) await task.execute();
 
 export default task;

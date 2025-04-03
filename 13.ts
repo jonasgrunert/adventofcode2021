@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 class Paper {
   #points = new Set<string>();
@@ -88,7 +88,5 @@ X   X
 X   X
 XXXXX`
 );
-
-if (import.meta.main) await task.execute();
 
 export default task;

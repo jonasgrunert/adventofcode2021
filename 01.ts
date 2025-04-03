@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const task = new Solution(
   (arr: number[]) => arr.filter((v, i) => v > arr[i - 1]).length,
@@ -12,7 +12,5 @@ const task = new Solution(
   { transform: (a) => Number(a) }
 );
 task.expect(7, 5);
-
-if (import.meta.main) await task.execute();
 
 export default task;

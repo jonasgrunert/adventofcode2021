@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const transform = (val: string) => {
   const [i, n] = val.split(" ");
@@ -47,7 +47,5 @@ const task = new Solution(
   }
 );
 task.expect(150, 900);
-
-if (import.meta.main) await task.execute();
 
 export default task;

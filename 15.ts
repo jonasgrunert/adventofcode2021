@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function adjacent(v: Vertice, maxX: number, maxY: number) {
   const vs: [number, number][] = [];
@@ -87,7 +87,5 @@ const task = new Solution(
   }
 );
 task.expect(40, 315);
-
-if (import.meta.main) await task.execute();
 
 export default task;

@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const task = new Solution(
   (arr: string[]) => {
@@ -35,7 +35,5 @@ const task = new Solution(
   }
 );
 task.expect(58);
-
-if (import.meta.main) await task.execute();
 
 export default task;

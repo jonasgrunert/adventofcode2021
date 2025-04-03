@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const replaceAdd = (s: string, left = true) => {
   const reS = String.raw`${left ? "" : "^"}(\d+)(\D+)(\d+)${left ? "$" : ""}`;
@@ -128,7 +128,5 @@ const task = new Solution(
   }
 );
 task.expect(4140, 3993);
-
-if (import.meta.main) await task.execute();
 
 export default task;

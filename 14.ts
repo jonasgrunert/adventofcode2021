@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function createPoly(poly: string, rules: [string, string][]) {
   return poly
@@ -68,7 +68,5 @@ const task = new Solution(
   }
 );
 task.expect(1588, 2188189693529);
-
-if (import.meta.main) await task.execute();
 
 export default task;

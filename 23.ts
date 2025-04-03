@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 enum Amphipod {
   A,
@@ -213,7 +213,5 @@ const task = new Solution(
   { transform: (t) => new State(t), sep: "\n\n" }
 );
 task.expect(12521, 44169);
-
-if (import.meta.main) await task.execute();
 
 export default task;

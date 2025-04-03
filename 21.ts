@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function* dice(sides: number): Generator<number, number, undefined> {
   let count = 1;
@@ -75,7 +75,5 @@ const task = new Solution(
   }
 );
 task.expect(739785, 444356092776315);
-
-if (import.meta.main) await task.execute();
 
 export default task;

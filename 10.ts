@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const matches = [
   { o: "(", c: ")", v: 3, s: 1 },
@@ -47,7 +47,5 @@ const task = new Solution(
   }
 );
 task.expect(26397, 288957);
-
-if (import.meta.main) await task.execute();
 
 export default task;

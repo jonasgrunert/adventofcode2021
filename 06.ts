@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 function calc(turns: number) {
   return (arr: number[]) => {
@@ -22,7 +22,5 @@ const task = new Solution(calc(80), calc(256), {
   sep: ",",
 });
 task.expect(5934, 26984457539);
-
-if (import.meta.main) await task.execute();
 
 export default task;

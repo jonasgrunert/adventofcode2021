@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 const flip = (bit: string) =>
   bit.replaceAll(/0|1/g, (m) => (m === "1" ? "0" : "1"));
@@ -37,7 +37,5 @@ const task = new Solution(
   }
 );
 task.expect(198, 230);
-
-if (import.meta.main) await task.execute();
 
 export default task;

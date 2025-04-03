@@ -1,4 +1,4 @@
-import Solution from "./_util.ts";
+import Solution from "./solution.ts";
 
 class Octos {
   #board: { value: number; flashed: boolean }[][];
@@ -67,7 +67,5 @@ const task = new Solution(
   { transform: (a) => a.split("").map((n) => Number.parseInt(n)) }
 );
 task.expect(1656, 195);
-
-if (import.meta.main) await task.execute();
 
 export default task;
