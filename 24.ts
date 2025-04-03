@@ -27,8 +27,9 @@ class Program {
     while ((ins = this.#instructions.shift()) !== undefined) {
       if (ins.type === "inp") this.#state[ins.to] = Number.parseInt(s[idx++]);
       else {
-        const from =
-          typeof ins.from === "number" ? ins.from : this.#state[ins.from];
+        const from = typeof ins.from === "number"
+          ? ins.from
+          : this.#state[ins.from];
         const to = this.#state[ins.to] ?? 0;
         switch (ins.type) {
           case "add": {
@@ -54,7 +55,7 @@ class Program {
           }
           default: {
             throw new Error(
-              "Unable to process instruction: " + JSON.stringify(ins)
+              "Unable to process instruction: " + JSON.stringify(ins),
             );
           }
         }
@@ -85,7 +86,7 @@ function solve(max = true) {
       i < arr.length && j < arr.length;
       idx++, i += 18, j += 18
     ) {
-      keyValues.push([idx, <number>arr[i].from, <number>arr[j].from]);
+      keyValues.push([idx, <number> arr[i].from, <number> arr[j].from]);
     }
     const MONAD: number[] = [];
     const stack: [number, number, number][] = [];
@@ -120,5 +121,6 @@ const task = new Solution(solve(), solve(false), {
   },
   sep: "\n",
 });
+task.expect("", "");
 
 export default task;
